@@ -1,0 +1,41 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: harbor-system
+spec:
+  interval: 10m
+  chart:
+    spec:
+      chart: harbor
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+        namespace: harbor-system
+      version: "*"
+  values:
+    harborAdminPassword: "StrongPassword123!"
+    externalURL: https://harbor.local
+    expose:
+      type: ingress
+      tls:
+        enabled: true
+        certSource: auto
+      ingress:
+        hosts:
+          core: harbor.local
+        className: "" # Укажите ваш Ingress Class (например, "traefik" или "nginx")
+    persistence:
+      enabled: true
+      persistentVolumeClaim:
+        registry:
+          size: 10Gi
+        database:
+          size: 2Gi
+        redis:
+          size: 1Gi
+        trivy:
+          size: 2Gi
+    trivy:
+      # Встроенный сканер уязвимостей
+      enabled: true
