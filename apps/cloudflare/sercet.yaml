@@ -5,4 +5,4 @@ metadata:
   namespace: cloudflare-system
 type: Opaque
 stringData:
-  api-token: "ТВОЙ_CLOUDFLARE_API_TOKEN"
+  api-token: "cfut_zN36HUsVuAz7xBSkGjaHeaqH3DE7EiBskfooBMMUffafdcf7"
