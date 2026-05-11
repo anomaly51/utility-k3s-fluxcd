@@ -42,8 +42,7 @@ jobs:
       - name: Trigger Flux Reconcile
         run: |
           export KUBECONFIG=$HOME/.kube/config
-          flux reconcile source git flux-system --timeout=15s
-          flux reconcile kustomization flux-system --timeout=15s
+          flux reconcile source git flux-system --with-source --timeout=15s
 
       - name: Debug Flux
         run: |
