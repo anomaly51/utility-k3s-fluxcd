@@ -45,8 +45,7 @@ jobs:
           flux reconcile source git flux-system --namespace flux-system --timeout=15s
           flux reconcile kustomization flux-system --namespace flux-system --timeout=15s
 
-      - name: Debug Flux Failure
-        if: failure()
+      - name: Debug Flux
         run: |
           export KUBECONFIG=$HOME/.kube/config
           flux get all --all-namespaces
