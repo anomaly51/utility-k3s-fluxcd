@@ -25,7 +25,6 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  # ДОБАВИТЬ ВОТ ЭТОТ БЛОК:
   postBuild:
     substitute:
       TOKEN_PART_1: "ghp_qtjRu"
