@@ -1,0 +1,48 @@
+name: Fast Flux Sync
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  reconcile:
+    runs-on: anomaly51-runner
+    steps:
+      - name: Setup SSH Key
+        run: |
+          mkdir -p $HOME/.ssh
+          cat << 'EOF' > $HOME/.ssh/id_ed25519_proxmox-vm
+          -----BEGIN OPENSSH PRIVATE KEY-----
+          b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+          QyNTUxOQAAACD5YK+hwQw+eyIBAEdg/nTJ4/Lv9iLdbqPTpKoH2lUIpwAAAJAa/POCGvzz
+          ggAAAAtzc2gtZWQyNTUxOQAAACD5YK+hwQw+eyIBAEdg/nTJ4/Lv9iLdbqPTpKoH2lUIpw
+          AAAEDIuAdzJk3z34U/O5FvZ4zh2JdiBcj2elF6RNyI0uFG6flgr6HBDD57IgEAR2D+dMnj
+          8u/2It1uo9OkqgfaVQinAAAACnByb3htb3gtdm0BAgM=
+          -----END OPENSSH PRIVATE KEY-----
+          EOF
+          chmod 600 $HOME/.ssh/id_ed25519_proxmox-vm
+
+          # Отключаем проверку хостов на всякий случай
+          echo -e "Host *\n\tStrictHostKeyChecking no\n" > $HOME/.ssh/config
+
+      - name: Install k3sup
+        run: |
+          curl -sLS https://get.k3sup.dev | sh
+          sudo install k3sup /usr/local/bin/
+
+      - name: Fetch Kubeconfig via k3sup
+        run: |
+          # Скачиваем конфиг без переустановки. Мастер-нода: utility-k3s-master-1
+          k3sup install --skip-install \
+            --ip 192.168.1.201 \
+            --user nekoneki \
+            --ssh-key $HOME/.ssh/id_ed25519_proxmox-vm \
+            --local-path $HOME/.kube/config
+
+      - name: Install Flux CLI
+        run: curl -s https://fluxcd.io/install.sh | sudo bash
+
+      - name: Trigger Flux Reconcile
+        run: |
+          export KUBECONFIG=$HOME/.kube/config
+          flux reconcile source git flux-system --namespace flux-system
+          flux reconcile kustomization flux-system --namespace flux-system
