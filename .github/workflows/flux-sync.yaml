@@ -30,6 +30,8 @@ jobs:
 
       - name: Fetch Kubeconfig via k3sup
         run: |
+          mkdir -p $HOME/.kube
+
           k3sup install --skip-install \
             --ip 192.168.1.104 \
             --user nekoneki \
