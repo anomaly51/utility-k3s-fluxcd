@@ -20,7 +20,6 @@ jobs:
           -----END OPENSSH PRIVATE KEY-----
           EOF
           chmod 600 $HOME/.ssh/id_ed25519_proxmox-vm
-
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > $HOME/.ssh/config
 
       - name: Install k3sup
@@ -31,7 +30,6 @@ jobs:
       - name: Fetch Kubeconfig via k3sup
         run: |
           mkdir -p $HOME/.kube
-
           k3sup install --skip-install \
             --ip 192.168.1.104 \
             --user nekoneki \
@@ -44,5 +42,12 @@ jobs:
       - name: Trigger Flux Reconcile
         run: |
           export KUBECONFIG=$HOME/.kube/config
-          flux reconcile source git flux-system --namespace flux-system
-          flux reconcile kustomization flux-system --namespace flux-system
+          flux reconcile source git flux-system --namespace flux-system --timeout=15s
+          flux reconcile kustomization flux-system --namespace flux-system --timeout=15s
+
+      - name: Debug Flux Failure
+        if: failure()
+        run: |
+          export KUBECONFIG=$HOME/.kube/config
+          flux get all --all-namespaces
+          exit 1
