@@ -21,7 +21,6 @@ jobs:
           EOF
           chmod 600 $HOME/.ssh/id_ed25519_proxmox-vm
 
-          # Отключаем проверку хостов на всякий случай
           echo -e "Host *\n\tStrictHostKeyChecking no\n" > $HOME/.ssh/config
 
       - name: Install k3sup
@@ -31,9 +30,8 @@ jobs:
 
       - name: Fetch Kubeconfig via k3sup
         run: |
-          # Скачиваем конфиг без переустановки. Мастер-нода: utility-k3s-master-1
           k3sup install --skip-install \
-            --ip 192.168.1.201 \
+            --ip 192.168.1.104 \
             --user nekoneki \
             --ssh-key $HOME/.ssh/id_ed25519_proxmox-vm \
             --local-path $HOME/.kube/config
