@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloudflare-api-token
+  namespace: cloudflare-system
+type: Opaque
+stringData:
+  api-token: "ТВОЙ_CLOUDFLARE_API_TOKEN"
