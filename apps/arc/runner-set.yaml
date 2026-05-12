@@ -16,4 +16,5 @@ spec:
   values:
     githubConfigUrl: "https://github.com/anomaly51"
     githubConfigSecret: arc-github-token
-
+    containerMode:
+      type: "dind"
