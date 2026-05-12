@@ -6,3 +6,4 @@ resources:
   - arc
   - harbor
   - nfs-provisioner
+  - cloudflared
