@@ -14,7 +14,7 @@ spec:
         namespace: harbor-system
       version: "*"
   values:
-    harborAdminPassword: "StrongPassword123!"
+    harborAdminPassword: "admin"
     externalURL: https://harbor.api-api-api.com
     expose:
       type: ingress
@@ -35,12 +35,17 @@ spec:
       enabled: true
       persistentVolumeClaim:
         registry:
-          size: 10Gi
+          size: 50Gi
+          storageClass: "nfs-client"
         database:
           size: 2Gi
+          storageClass: "nfs-client"
         redis:
           size: 1Gi
+          storageClass: "nfs-client"
         trivy:
           size: 2Gi
+          storageClass: "nfs-client"
     trivy:
       enabled: true
+
