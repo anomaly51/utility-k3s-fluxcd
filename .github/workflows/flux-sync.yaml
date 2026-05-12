@@ -47,5 +47,4 @@ jobs:
       - name: Debug Flux
         run: |
           export KUBECONFIG=$HOME/.kube/config
-          flux get all 
-          exit 1
+          flux get all
