@@ -7,15 +7,19 @@ spec:
   dependsOn:
     - name: flux-system
   interval: 10m
+  retryInterval: 1m
+  timeout: 5m
   path: ./infrastructure
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
   healthChecks:
-    - kind: HelmRelease
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
       name: external-secrets
       namespace: external-secrets
-    - kind: HelmRelease
+    - apiVersion: helm.toolkit.fluxcd.io/v2
+      kind: HelmRelease
       name: cert-manager
       namespace: cert-manager
