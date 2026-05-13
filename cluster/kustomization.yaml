@@ -4,3 +4,4 @@ resources:
   - flux-system
   - ../apps
   - cert-manager-issuers-sync.yaml
+  - vault-store.yaml

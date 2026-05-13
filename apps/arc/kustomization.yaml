@@ -4,5 +4,5 @@ resources:
   - namespace.yaml
   - helmrepository.yaml
   - controller.yaml
-  - secret.yaml
+  - external-secret.yaml
   - runner-set.yaml
