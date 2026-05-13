@@ -7,3 +7,5 @@ resources:
   - harbor
   - nfs-provisioner
   - cloudflared
+  - vault
+  - external-secret
