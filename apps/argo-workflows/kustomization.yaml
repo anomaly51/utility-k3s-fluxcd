@@ -8,6 +8,7 @@ resources:
   - base/argo-server-transport.yaml
   - https://github.com/argoproj/argo-workflows/releases/download/v3.5.5/install.yaml
   - base/argo-server-ingress.yaml
+  - base/argo-server-ingress-route.yaml
   - workflows/vm-provision-template.yaml
   - workflows/vm-destroy-template.yaml
   - workflows/cluster-provision-template.yaml
