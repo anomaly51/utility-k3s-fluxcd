@@ -5,6 +5,7 @@ namespace: argo-workflows
 resources:
   - base/namespace.yaml
   - base/workflow-rbac.yaml
+  - base/argo-server-transport.yaml
   - https://github.com/argoproj/argo-workflows/releases/download/v3.5.5/install.yaml
   - base/argo-server-ingress.yaml
   - workflows/vm-provision-template.yaml
