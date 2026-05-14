@@ -20,4 +20,5 @@ spec:
     storageClass:
       name: nfs-client
       defaultClass: true
-      archiveOnDelete: false
+      archiveOnDelete: true
+      reclaimPolicy: Retain
