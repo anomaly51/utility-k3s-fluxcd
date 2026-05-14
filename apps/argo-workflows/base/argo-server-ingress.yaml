@@ -10,7 +10,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
     traefik.ingress.kubernetes.io/router.tls: "true"
     traefik.ingress.kubernetes.io/service.serversscheme: https
-    traefik.ingress.kubernetes.io/serverstransport: argo-workflows-argo-server@kubernetescrd
+    traefik.ingress.kubernetes.io/service.serverstransport: argo-server@kubernetescrd
 spec:
   ingressClassName: traefik
   tls:
