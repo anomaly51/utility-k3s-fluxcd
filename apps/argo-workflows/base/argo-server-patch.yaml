@@ -12,3 +12,13 @@ spec:
             - server
             - --auth-mode=server
             - --secure=false
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 2746
+              scheme: HTTP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 2746
+              scheme: HTTP
