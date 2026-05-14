@@ -11,3 +11,4 @@ spec:
           args:
             - server
             - --auth-mode=server
+            - --secure=false
