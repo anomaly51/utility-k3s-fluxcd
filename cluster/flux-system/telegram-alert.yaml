@@ -36,10 +36,9 @@ spec:
       name: "*"
       namespace: flux-system
   eventMetadata:
-    cluster: "🛠️ Utils K3s"
+    cluster: "🛠️ Utility K3s"
     environment: "🌍 Production"
-    summary: "🚨 UTILS CLUSTER — error requires immediate attention"
-    team: "DevOps"
+    summary: "🚨 UTILITY CLUSTER — error requires immediate attention"
 ---
 # Informational events — deployments, upgrades, reconciliation
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
@@ -62,10 +61,9 @@ spec:
       name: "*"
       namespace: "*"
   eventMetadata:
-    cluster: "🛠️ Utils K3s"
+    cluster: "🛠️ Utility K3s"
     environment: "🌍 Production"
-    summary: "ℹ️ UTILS CLUSTER — state update"
-    team: "DevOps"
+    summary: "ℹ️ UTILITY CLUSTER — state update"
   exclusionList:
     - ".*no new revision.*"
     - ".*no changes.*"
