@@ -10,4 +10,18 @@ data:
     metrics: 0.0.0.0:2000
     no-autoupdate: true
     ingress:
-      - service: http://traefik.kube-system.svc.cluster.local:80
+      - hostname: shisha-guid.api-api-api.com
+        service: http://192.168.1.81
+      - hostname: shisha-guid-api.api-api-api.com
+        service: http://192.168.1.81
+      - hostname: online-shop.api-api-api.com
+        service: http://192.168.1.81
+      - hostname: online-shop-api.api-api-api.com
+        service: http://192.168.1.81
+      - hostname: vault.api-api-api.com
+        service: http://traefik.kube-system.svc.cluster.local:80
+      - hostname: harbor.api-api-api.com
+        service: http://traefik.kube-system.svc.cluster.local:80
+      - hostname: argo-workflows.api-api-api.com
+        service: http://traefik.kube-system.svc.cluster.local:80
+      - service: http_status:404
