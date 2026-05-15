@@ -12,6 +12,8 @@ spec:
     metadata:
       labels:
         app: cloudflared
+      annotations:
+        config.kubernetes.io/reload: workload-app-host-routes-v1
     spec:
       containers:
         - name: cloudflared
